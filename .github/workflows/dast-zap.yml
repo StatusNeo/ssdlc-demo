@@ -1,0 +1,30 @@
+name: DAST-ZAP
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  zap-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t ssdlc-demo:zap .
+      - name: Run app container
+        run: docker run -d --name api -p 8000:8000 ssdlc-demo:zap
+      - name: Wait for health
+        run: |
+          for i in {1..20}; do
+            if curl -sf http://127.0.0.1:8000/health >/dev/null; then echo "healthy"; exit 0; fi; sleep 3; done; exit 1
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: 'http://127.0.0.1:8000'
+          rules_file_name: '.zap-rules.tsv'
+          cmd_options: '-a'
+      - name: Stop app
+        if: always()
+        run: docker rm -f api || true 

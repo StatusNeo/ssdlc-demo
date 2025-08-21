@@ -1,0 +1,3 @@
+10054	WARN	IGNORE	Cookie without SameSite Attribute
+10055	WARN	IGNORE	Cookie without Secure Flag
+10020	WARN	IGNORE	X-Frame-Options Header Not Set 

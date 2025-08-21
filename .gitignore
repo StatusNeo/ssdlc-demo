@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.dist/
+build/
+.venv/
+.env
+.env.*
+.pytest_cache/
+coverage.xml
+htmlcov/
+
+# Editors
+.vscode/
+.idea/
+
+# Docker
+*.log
+*.pid
+*.db
+.docker/
+Dockerfile.*.local
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Pre-commit
+.pre-commit-cache/
+
+# Detect-secrets
+.cache.dsf
+
+# Sonar
+.sonar/** 
