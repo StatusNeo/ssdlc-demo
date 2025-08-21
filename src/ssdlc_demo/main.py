@@ -24,4 +24,4 @@ def health() -> dict[str, str]:
 @app.post("/echo", response_model=EchoResponse, status_code=status.HTTP_200_OK)
 def echo(payload: EchoRequest, response: Response) -> EchoResponse:
     # Any validation is handled by Pydantic models
-    return EchoResponse(message=payload.message) 
+    return EchoResponse(message=payload.message)

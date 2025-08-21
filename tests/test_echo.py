@@ -13,4 +13,4 @@ def test_echo_roundtrip() -> None:
 def test_echo_validation_error() -> None:
     client = TestClient(app)
     res = client.post("/echo", json={})
-    assert res.status_code == 422 
+    assert res.status_code == 422

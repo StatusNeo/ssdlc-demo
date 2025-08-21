@@ -33,4 +33,4 @@ def configure_logging(level: str | int = "INFO") -> None:
 
     # Reduce noisy third-party loggers if needed
     logging.getLogger("uvicorn.error").setLevel(level)
-    logging.getLogger("uvicorn.access").setLevel(level) 
+    logging.getLogger("uvicorn.access").setLevel(level)

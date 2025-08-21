@@ -52,11 +52,11 @@ jobs:
         working-directory: infra
     steps:
       - uses: actions/checkout@v4
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: ${{ env.AWS_REGION }}
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+      #     aws-region: ${{ env.AWS_REGION }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -74,6 +74,6 @@ jobs:
           download_external_modules: true
       - name: Terraform Plan
         run: terraform plan -input=false -out=tfplan
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform apply -input=false -auto-approve tfplan 
+      # - name: Terraform Apply
+      #   if: github.ref == 'refs/heads/main'
+      #   run: terraform apply -input=false -auto-approve tfplan 
