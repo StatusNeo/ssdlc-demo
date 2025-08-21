@@ -58,7 +58,7 @@ jobs:
       - name: Run tests to generate coverage
         run: pytest -q
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2.1.0
+        uses: SonarSource/sonarcloud-github-action@v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
