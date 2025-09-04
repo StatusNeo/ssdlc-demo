@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+
 from ssdlc_demo.main import app
 
 
@@ -36,6 +37,7 @@ def test_anime_quote_success(monkeypatch) -> None:
 def test_anime_quote_upstream_error(monkeypatch) -> None:
     class DummyResponse:
         status_code = 500
+
         def json(self):
             return {}
 
@@ -54,6 +56,7 @@ def test_anime_quote_upstream_error(monkeypatch) -> None:
 def test_anime_quote_invalid_json(monkeypatch) -> None:
     class DummyResponse:
         status_code = 200
+
         def json(self):  # type: ignore[no-untyped-def]
             raise ValueError("invalid json")
 
@@ -67,5 +70,3 @@ def test_anime_quote_invalid_json(monkeypatch) -> None:
     client = TestClient(app)
     res = client.get("/anime/quote")
     assert res.status_code == 502
-
-
